@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jarvis-ai"
+version = "1.0.0"
+description = "Jarvis AI - a free, open-source personal AI assistant with terminal, voice and web modes."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Sami Bajwa", email = "samibajwa491@gmail.com" }]
+keywords = ["jarvis", "ai", "assistant", "chatbot", "voice-assistant", "ollama", "claude", "openai", "gemini"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Education",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = ["httpx>=0.27", "python-dotenv>=1.0"]
+
+[project.optional-dependencies]
+web = ["fastapi>=0.110", "uvicorn>=0.29"]
+voice = ["SpeechRecognition>=3.10", "pyttsx3>=2.90", "PyAudio>=0.2.14"]
+dev = ["pytest>=8", "ruff>=0.5", "fastapi>=0.110", "uvicorn>=0.29", "httpx>=0.27"]
+all = ["fastapi>=0.110", "uvicorn>=0.29", "SpeechRecognition>=3.10", "pyttsx3>=2.90", "PyAudio>=0.2.14"]
+
+[project.urls]
+Homepage = "https://samioutic.com"
+Documentation = "https://github.com/samibajwaisking/jarvis-ai/tree/main/docs"
+Issues = "https://github.com/samibajwaisking/jarvis-ai/issues"
+
+[project.scripts]
+jarvis = "jarvis.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["jarvis*"]
+
+[tool.setuptools.package-data]
+jarvis = ["web/*.html"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+ignore = ["E501"]
